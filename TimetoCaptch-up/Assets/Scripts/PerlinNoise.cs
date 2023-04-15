@@ -16,8 +16,7 @@ public class PerlinNoise : MonoBehaviour
     {
         TextureUpdate();
     }
-
-    /* --- Only used for debuging
+    /*
     private void Update()
     {
         TextureUpdate();
