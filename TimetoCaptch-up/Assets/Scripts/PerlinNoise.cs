@@ -1,6 +1,7 @@
 using System;
 using UnityEngine;
 using UnityEngine.UI;
+using Random = UnityEngine.Random;
 
 public class PerlinNoise : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class PerlinNoise : MonoBehaviour
     public float scale = 20f;
     public float offsetY = 0f;
     public float offsetX = 0f;
+    public float randomOffsetY = 300f;
+    public float randomOffsetX = 300f;
     
     public Image image;
 
@@ -16,13 +19,11 @@ public class PerlinNoise : MonoBehaviour
     {
         TextureUpdate();
     }
-    /*
-    private void Update()
+    
+    /*private void Update()
     {
         TextureUpdate();
-    }
-    */
-
+    }*/
     public void TextureUpdate()
     {
         image.material.mainTexture = GenerateTexture();
@@ -54,5 +55,11 @@ public class PerlinNoise : MonoBehaviour
         
         float sample = Mathf.PerlinNoise(xCoord, yCoord);
         return new Color(sample, sample, sample);
+    }
+
+    public void RandomizeOffset()
+    {
+        offsetX = Random.Range(-randomOffsetX, randomOffsetX);
+        offsetY = Random.Range(-randomOffsetY, randomOffsetY);
     }
 }

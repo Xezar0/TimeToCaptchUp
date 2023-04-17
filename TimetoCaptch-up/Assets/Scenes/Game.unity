@@ -837,6 +837,8 @@ MonoBehaviour:
   scale: 23
   offsetY: 10.41
   offsetX: 1.21
+  randomOffsetY: 300
+  randomOffsetX: 300
   image: {fileID: 165056811}
 --- !u!114 &165056811
 MonoBehaviour:
@@ -1956,6 +1958,11 @@ MonoBehaviour:
   isShowing: 0
   width: 0
   height: 0
+  perlinNoise: {fileID: 165056810}
+  red: {fileID: 1114644493}
+  white: {fileID: 1854831002}
+  speed: 80
+  minimumStartingDistance: 7.5
 --- !u!1 &416777879
 GameObject:
   m_ObjectHideFlags: 0
@@ -3108,7 +3115,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: 4
-  monitor: {fileID: 0}
+  monitor: {fileID: 394421587}
   keypressSounds: {fileID: 8300000, guid: 1abd142ff36399f4e9376a636031802e, type: 3}
   source: {fileID: 1839502962}
   animator: {fileID: 1283008885}
@@ -3357,7 +3364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: 2
-  monitor: {fileID: 0}
+  monitor: {fileID: 394421587}
   keypressSounds: {fileID: 8300000, guid: 1abd142ff36399f4e9376a636031802e, type: 3}
   source: {fileID: 1839502962}
   animator: {fileID: 1283008885}
@@ -3937,7 +3944,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: 3
-  monitor: {fileID: 0}
+  monitor: {fileID: 394421587}
   keypressSounds: {fileID: 8300000, guid: 1abd142ff36399f4e9376a636031802e, type: 3}
   source: {fileID: 1839502962}
   animator: {fileID: 1283008885}
@@ -5346,7 +5353,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   input: 1
-  monitor: {fileID: 0}
+  monitor: {fileID: 394421587}
   keypressSounds: {fileID: 8300000, guid: 1abd142ff36399f4e9376a636031802e, type: 3}
   source: {fileID: 1839502962}
   animator: {fileID: 1283008885}
