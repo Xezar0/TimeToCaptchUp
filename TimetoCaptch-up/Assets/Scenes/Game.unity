@@ -5892,7 +5892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84b171e3d1a090049ac96e10f82531a8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  lookSpeed: 400
+  lookSpeed: 100
   maxRotX: 75
   minRotX: -75
   rotationX: 0
