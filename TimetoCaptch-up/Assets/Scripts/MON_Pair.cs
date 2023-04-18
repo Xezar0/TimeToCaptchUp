@@ -58,7 +58,7 @@ public class MON_Pair : Monitor
                 temp = holderArray[0];
                 break;
             default:
-                Debug.Log("Yaaa,  something is wrong");
+                Debug.Log("Input error. Wrong input: " + input);
                 break;
         }
 
@@ -85,16 +85,20 @@ public class MON_Pair : Monitor
                 Debug.Log("Won PAIRS");
                 pairs[show1].color = Color.blue;
                 pairs[show2].color = Color.blue;
+                manager.Reward(rewardAmount);
+                isShowing = false;
+                source.PlayOneShot(victory);
+                manager.UpdateTaskNumber();
                 StartCoroutine(WinDelay());
-                Reward();
             }
             else
             {
                 Debug.Log("Lost PAIRS");
                 pairs[show1].color = Color.red;
                 pairs[show2].color = Color.red;
+                source.PlayOneShot(loose);
+                manager.Punish(looseAmount);
                 StartCoroutine(RestartDelay());
-                Punish();
             }
         }
     }
@@ -122,6 +126,7 @@ public class MON_Pair : Monitor
     }
     public override void StartCaptcha()
     {
+        base.StartCaptcha();
         for (int i = 0; i < 4; i++)
         {
             int rand = Random.Range(0, 4);
@@ -157,6 +162,5 @@ public class MON_Pair : Monitor
     {
         yield return new WaitForSeconds(2f);
         ToDefaultState();
-        isShowing = false;
     }
 }

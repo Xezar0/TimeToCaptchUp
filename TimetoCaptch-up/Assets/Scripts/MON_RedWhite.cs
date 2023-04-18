@@ -21,14 +21,14 @@ public class MON_RedWhite : Monitor
     private Vector2 direction;
     public override void Start()
     {
-        base.Start();
         maxx = screanBG.rect.width / 2 - red.rect.width / 2;
         minx = -screanBG.rect.width / 2 + red.rect.width / 2;
         maxy = screanBG.rect.height / 2 - red.rect.height / 2;
         miny = -screanBG.rect.height / 2 + red.rect.height / 2;
-        
-        isShowing = true;
-        StartCaptcha();
+        base.Start();
+
+        //isShowing = true;
+        //StartCaptcha();
     }
     private void FixedUpdate()
     {
@@ -43,15 +43,14 @@ public class MON_RedWhite : Monitor
         // WON CAPTCHA
         if(Vector2.Distance(red.anchoredPosition, white.anchoredPosition) < white.rect.width/2f)
         {
-            AudioSource.PlayClipAtPoint(victory, Vector3.zero);
             ToDefaultState();
-            Reward();
             isShowing = false;
+            Reward();
         }
     }
-
     public override void StartCaptcha()
     {
+        base.StartCaptcha();
         perlinNoise.RandomizeOffset();
         perlinNoise.TextureUpdate();
         
