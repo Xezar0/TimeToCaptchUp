@@ -49,33 +49,33 @@ public class CaptchaManager : MonoBehaviour
             Cursor.visible = true;
         }
 
-        if (isGameActive)
+        if (!isGameActive) return;
+        
+        scoreTime += Time.deltaTime;
+
+        if (efficiency > 0)
         {
-            scoreTime += Time.deltaTime;
+            efficiency -= depletionRate * taskNumber * Time.deltaTime;
+            efficiencyBarSlider.value = efficiency / 100f;
+        }
 
-            if (efficiency > 0)
+        if (taskNumber < monitors.Count)
+        {
+            currentTimeBetweenTasks -= Time.deltaTime;
+
+            if (currentTimeBetweenTasks <= 0f)
             {
-                efficiency -= depletionRate * taskNumber * Time.deltaTime;
-                efficiencyBarSlider.value = efficiency / 100f;
-            }
+                taskSpawnRate *= taskSpawnRateSpeedUp;
+                currentTimeBetweenTasks = taskSpawnRate;
 
-            if (taskNumber < monitors.Count)
-            {
-                currentTimeBetweenTasks -= Time.deltaTime;
-
-                if (currentTimeBetweenTasks <= 0f)
-                {
-                    taskSpawnRate *= taskSpawnRateSpeedUp;
-                    currentTimeBetweenTasks = taskSpawnRate;
-
-                    StartTask();
-                }
+                StartTask();
             }
         }
 
         if (efficiency <= 0f)
         {
-            GameManager.Instance.LoadSceneByIndex(2);
+            isGameActive = false;
+            GameManager.Instance.GameLost(scoreTime);
         }
     }
 
@@ -87,8 +87,7 @@ public class CaptchaManager : MonoBehaviour
         }
         else
         {
-            // --- LOOSE ---
-            Debug.Log("You have Lost");
+            GameManager.Instance.GameLost(scoreTime);
         }
     }
 

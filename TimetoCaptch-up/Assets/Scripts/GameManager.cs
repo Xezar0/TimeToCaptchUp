@@ -3,11 +3,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-
+[RequireComponent(typeof(SaveInfo))]
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
-
+    private SaveInfo saveInfo;
+    public float scoreTime;
+    
     // ensures Singleton behaviour 
     private void Awake()
     {
@@ -18,6 +20,7 @@ public class GameManager : MonoBehaviour
         else 
         { 
             Instance = this;
+            saveInfo = GetComponent<SaveInfo>();
         }
     }
 
@@ -34,5 +37,14 @@ public class GameManager : MonoBehaviour
     public void LoadSceneByIndex(int index)
     {
         SceneManager.LoadScene(index);
+    }
+
+    public void GameLost(float score)
+    {
+        Debug.Log("You have lost");
+        LoadSceneByIndex(2);
+        if (score > scoreTime) scoreTime = score;
+        saveInfo.scoreTime = scoreTime;
+        saveInfo.Save();
     }
 }
