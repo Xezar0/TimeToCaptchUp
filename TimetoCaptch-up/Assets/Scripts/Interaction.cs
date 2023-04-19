@@ -17,7 +17,6 @@ public class Interaction : MonoBehaviour
                (new Vector3(playerCamera.rect.width/2, playerCamera.rect.height/2)), 
                out RaycastHit hit, interactionDistance))
         {
-            // currentInteractable == null
             if (hit.collider.gameObject.layer == 6 && currentInteractable == null ||
                 hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID())
             {
