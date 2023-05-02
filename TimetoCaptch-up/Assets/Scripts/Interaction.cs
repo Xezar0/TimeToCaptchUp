@@ -1,40 +1,30 @@
+using System;
 using UnityEngine;
 public class Interaction : MonoBehaviour
 {
     [SerializeField] private float interactionDistance = 400f;
-    [SerializeField] private Camera playerCamera;
     [SerializeField] private Interactable currentInteractable;
+    private LayerMask interactionMask = 6;
 
     private void Update()
     {
-        HandleInteractionCheck();
-        HandleInteractionInput();
-    }
-
-    private void HandleInteractionCheck()
-    {
-        if(Physics.Raycast(playerCamera.ViewportPointToRay
-               (new Vector3(playerCamera.rect.width/2, playerCamera.rect.height/2)), 
-               out RaycastHit hit, interactionDistance))
+        if (Physics.Raycast(gameObject.transform.position, gameObject.transform.forward, out RaycastHit hit,
+                interactionDistance))
         {
-            if (hit.collider.gameObject.layer == 6 && currentInteractable == null ||
-                hit.collider.gameObject.GetInstanceID() != currentInteractable.GetInstanceID())
+            if (hit.collider.gameObject.layer == 6)
             {
-                if(currentInteractable != null) currentInteractable.OnLoseFocus();
+                if (currentInteractable != null) currentInteractable.OnLoseFocus();
                 
                 hit.collider.TryGetComponent(out currentInteractable);
-                
-                if (currentInteractable) currentInteractable.OnFocus();
+                currentInteractable.OnFocus();
             }
         }
-        else if(currentInteractable != null) 
+        else
         {
-            currentInteractable.OnLoseFocus();
+            if(currentInteractable != null) currentInteractable.OnLoseFocus();
             currentInteractable = null;
         }
-    }
-    private void HandleInteractionInput()
-    {
+        
         if (Input.GetMouseButtonDown(0) && currentInteractable != null)
         {
             currentInteractable.OnInteract();

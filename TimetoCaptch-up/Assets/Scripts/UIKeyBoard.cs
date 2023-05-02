@@ -10,6 +10,9 @@ public class UIKeyBoard : Interactable
     private Outline outline;
     [SerializeField] private MoveDirection inputDirection;
     [SerializeField] private bool isSelect;
+    [SerializeField] private AudioClip keypressSounds;
+    [SerializeField] private AudioSource source;
+    [SerializeField] private Animator animator;
     public override void Awake()
     {
         base.Awake();
@@ -30,6 +33,10 @@ public class UIKeyBoard : Interactable
         {
             ExecuteEvents.Execute(EventSystem.current.currentSelectedGameObject, null, ExecuteEvents.submitHandler);
         }
+        source.PlayOneShot(keypressSounds);
+        animator.Rebind();
+        animator.Play(inputDirection.ToString());
+        Debug.Log("button" + inputDirection);
     }
     public void Move(MoveDirection direction)
     {
@@ -37,9 +44,6 @@ public class UIKeyBoard : Interactable
         data.moveDir = direction;
         data.selectedObject = EventSystem.current.currentSelectedGameObject;
         ExecuteEvents.Execute(data.selectedObject, data, ExecuteEvents.moveHandler);
-        
-        Debug.Log("move: " + direction);
-        Debug.Log(EventSystem.current);
     }
 
     public override void OnLoseFocus()

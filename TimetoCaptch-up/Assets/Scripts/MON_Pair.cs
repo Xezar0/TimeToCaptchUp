@@ -70,7 +70,7 @@ public class MON_Pair : Monitor
                 show1 = show;
                 pairs[show].color = Color.gray;
             }
-            else
+            else if (show1 != show)
             {
                 select2 = temp;
                 show2 = show;
