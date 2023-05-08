@@ -26,7 +26,6 @@ public class MON_RedWhite : Monitor
         maxy = screanBG.rect.height / 2 - red.rect.height / 2;
         miny = -screanBG.rect.height / 2 + red.rect.height / 2;
         base.Start();
-
         //isShowing = true;
         //StartCaptcha();
     }
@@ -45,6 +44,7 @@ public class MON_RedWhite : Monitor
         {
             ToDefaultState();
             isShowing = false;
+            ScreenUpdate();
             Reward();
         }
     }

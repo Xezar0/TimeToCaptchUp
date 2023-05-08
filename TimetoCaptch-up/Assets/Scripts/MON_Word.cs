@@ -75,6 +75,7 @@ public class MON_Word : Monitor
                 Debug.Log("Won Capcha");
                 ToDefaultState();
                 isShowing = false;
+                ScreenUpdate();
                 Reward();
             }
             else

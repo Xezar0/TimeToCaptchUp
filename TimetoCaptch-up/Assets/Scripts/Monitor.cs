@@ -13,6 +13,7 @@ public abstract class Monitor : MonoBehaviour
     public float rewardAmount;
     public float looseAmount;
     public bool isShowing = false;
+    public GameObject screenHider;
 
     public float width;
     public float height;
@@ -22,6 +23,7 @@ public abstract class Monitor : MonoBehaviour
         width = screanBG.rect.width;
         height = screanBG.rect.height;
         ToDefaultState();
+        ScreenUpdate();
     }
 
     public void Punish()
@@ -44,7 +46,13 @@ public abstract class Monitor : MonoBehaviour
         isShowing = true;
         manager.UpdateTaskNumber();
         source.PlayOneShot(startSound);
+        ScreenUpdate();
     }
 
     public abstract void HandleInput(int input);
+
+    public void ScreenUpdate()
+    {
+        screenHider.SetActive(!isShowing);
+    }
 }

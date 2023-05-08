@@ -104,6 +104,7 @@ public class MON_Pair : Monitor
     }
     public override void ToDefaultState()
     {
+        isShowing = false;
         select1 = 999;
         select2 = 998;
         show1 = 999;
@@ -162,5 +163,6 @@ public class MON_Pair : Monitor
     {
         yield return new WaitForSeconds(2f);
         ToDefaultState();
+        ScreenUpdate();
     }
 }
