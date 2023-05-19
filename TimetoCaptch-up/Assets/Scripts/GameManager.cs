@@ -24,10 +24,10 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void Start()
-    {
-        Application.targetFrameRate = 60;
-    }
+    //private void Start()
+    //{
+    //    Application.targetFrameRate = 60;
+    //}
 
     public void LoadSceneByName(string name)
     {
@@ -37,6 +37,11 @@ public class GameManager : MonoBehaviour
     public void LoadSceneByIndex(int index)
     {
         SceneManager.LoadScene(index);
+    }
+    public void ExitGame()
+    {
+        Application.Quit();
+        print("izišo");
     }
 
     public void GameLost(float score)
